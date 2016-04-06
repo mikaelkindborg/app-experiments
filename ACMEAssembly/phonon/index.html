@@ -6,7 +6,54 @@
         <meta name="viewport" content="width=device-width, user-scalable=no,
         	initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
+		<style>
+		html
+		{
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		*, *:before, *:after
+		{
+			-webkit-box-sizing: inherit;
+			-moz-box-sizing: inherit;
+			box-sizing: inherit;
+		}
+
+		</style>
         <link rel="stylesheet" href="lib/phonon/css/phonon.css" />
+
+		<style>
+		.evo-menu-item
+		{
+			clear: both;
+			background: rgb(230,230,230);
+			right: 0px;
+			left: 0px;
+			height: 120px;
+			box-sizing: border-box;
+			margin: 5px;
+			padding: 5px;
+			cursor: pointer;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+
+		.evo-menu-item img
+		{
+			width: 150px !important;
+			height: auto !important;
+			float: left;
+			padding: 0px 10px 10px 0px;
+		}
+
+		.evo-menu-item p
+		{
+			font-size: 24px;
+		}
+		</style>
 
         <title>ACME Assembly</title>
     </head>
@@ -20,17 +67,33 @@
             </header>
             <div class="content">
 
-                <ul class="list">
+                <div class="evo-menu-tracking evo-menu-item">
+                	<img src="images/tracking.jpg" />
+                	<p>Asset Tracking</p>
+                </div>
+
+                <div class="evo-menu-handling evo-menu-item">
+                	<img src="images/handling.jpg" />
+                	<p>Material Handling</p>
+                </div>
+
+                <div class="evo-menu-assembly evo-menu-item ">
+                	<img src="images/assembly.jpg" />
+                	<p>Assembly Work Order</p>
+                </div>
+
+                	<!--
                     <li><i class="pull-left icon icon-info-outline"></i><a class="padded-list" href="asset-tracker.html">Asset Tracker</a></li>
                     <li><i class="pull-left icon icon-star"></i><a class="padded-list" href="material-handling.html">Material Handling</a></li>
-                    <li><i class="pull-left icon icon-settings"></i><a class="padded-list" href="work-order.html">Assembly Work Order</a></li>
-                </ul>
+                    <li><image class="pull-left evo-icon-image" src="images/assembly.jpg"></i><a class="padded-list" href="work-order.html">Assembly Work Order</a></li>
+                    -->
 
             </div>
         </home>
 
 		<script src="lib/jquery/jquery-2.2.2.min.js"></script>
         <script src="lib/phonon/js/phonon.js"></script>
+        <script src="index.js"></script>
 
     </body>
 </html>
