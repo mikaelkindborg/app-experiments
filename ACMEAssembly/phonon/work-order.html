@@ -6,9 +6,24 @@
         <meta name="viewport" content="width=device-width, user-scalable=no,
         	initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
-        <link rel="stylesheet" href="lib/phonon/css/phonon.css" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="expires" content="-1" />
 
         <title>ACME Assembly</title>
+
+        <link rel="stylesheet" href="lib/phonon/css/phonon.css" />
+        <link rel="stylesheet" href="app.css" />
+
+        <style>
+		.page-id-workorder-1
+		{
+			display: none;
+		}
+		h2
+		{
+			margin-top: 20px;
+		}
+        </style>
     </head>
     <body>
 		<home data-page="true">
@@ -22,15 +37,210 @@
             <div class="content">
 
             <div class="padded-full">
-				<h1>Assembly Work Order</h1>
 
-                <p>Move within the range of the parts container to get assembly instructions.</p>
-            </div>
+            	<div class="page-id-scanning">
+					<h1>Assembly Work Order</h1>
+
+					<p>Move within the range of the parts box to get assembly instructions.</p>
+					<p class="text-id-scanning">Scanning for nearby parts boxes.</p>
+
+				</div>
+
+            	<div class="page-id-workorder-1">
+					<h1>Wright 1903 Engine Assembly Work Order</h1>
+					<h2>Parts</h2>
+					<table class="table">
+						<tr>
+							<thead>
+								<th>Part No.</th>
+								<th>Name</th>
+								<th>Qty</th>
+							</thead>
+						</tr>
+						<tbody>
+							<tr>
+								<td>ACM-298176</td>
+								<td>Flywheel</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-988176</td>
+								<td>Crankshaft</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Magneto</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855765</td>
+								<td>Radiator Hoses</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ACM-356144</td>
+								<td>Crankcase</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-997198</td>
+								<td>Timing Chain</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-987376</td>
+								<td>Combustion Chamber</td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>ACM-755176</td>
+								<td>Intake Mainfold</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Air Intake</td>
+								<td>1</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h2>Tools</h2>
+					<table class="table">
+						<tr>
+							<thead>
+								<th>Tool No.</th>
+								<th>Name</th>
+								<th>Qty</th>
+							</thead>
+						</tr>
+						<tbody>
+							<tr>
+								<td>ACM-678176</td>
+								<td>Spanner No 3</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-988176</td>
+								<td>Spanner No 4</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ACM-112176</td>
+								<td>Spanner No 6</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-112176</td>
+								<td>Spanner No 10</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Torx Wrench No 5</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Torx Wrench No 6</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Torx Wrench No 7</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Torx Wrench No 8</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Torx Wrench No 10</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Slotted Screwdriver No 4</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>ACM-855176</td>
+								<td>Slotted Screwdriver No 8</td>
+								<td>1</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h2>Procedure</h2>
+					<table class="table">
+						<tr>
+							<thead>
+								<th>Step</th>
+								<th>Name</th>
+								<th>Parts</th>
+								<th>Tools</th>
+								<th>Description</th>
+							</thead>
+						</tr>
+						<tbody>
+							<tr>
+								<td>1.</td>
+								<td>Flywheel Assembly</td>
+								<td>Flywheel, Crankshaft, Magneto</td>
+								<td>Spanner No 3,<br />Torx Wrench No 7</td>
+								<td>Operate in sequence, assemble parts using tools listed. Safety Level 2 required.</td>
+							</tr>
+							<tr>
+								<td>2.</td>
+								<td>Crankcase Assembly</td>
+								<td>Crankcase, Timing Chain, Radiator Hoses</td>
+								<td>Spanner No 3/4,<br />Torx Wrench No 5/6/7,<br />Slotted Screwdriver No 4/8</td>
+								<td>Operate in sequence, assemble parts using tools listed. Note deviations. Safety Level 1 required.</td>
+							</tr>
+							<tr>
+								<td>3.</td>
+								<td>Combustion Chamber Assembly</td>
+								<td>Combustion Chamber, Intake Mainfold, Air Intake</td>
+								<td>Spanner No 4/6/10,<br />Torx Wrench No 6/7</td>
+								<td>Operate in sequence, assemble parts using tools listed. Safety Level 3 required.</td>
+							</tr>
+							<tr>
+								<td>4.</td>
+								<td>Final Assembly</td>
+								<td>Previously assembled units</td>
+								<td>Spanner No 4/6/10,<br />Torx Wrench No 6/7</td>
+								<td>Sensor engineer supervision required. Apply operation sequence as instructed.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
             </div>
         </home>
 
 		<script src="lib/jquery/jquery-2.2.2.min.js"></script>
         <script src="lib/phonon/js/phonon.js"></script>
+
+        <script>
+        var timer = setInterval(
+        	function()
+        	{
+        		var text = $('.text-id-scanning').text();
+        		$('.text-id-scanning').text(text + '.');
+        	},
+        	500);
+        setTimeout(
+        	function()
+        	{
+        		clearInterval(timer);
+        		$('.page-id-scanning').hide();
+        		$('.page-id-workorder-1').show();
+        	},
+        	5000);
+        </script>
 
     </body>
 </html>

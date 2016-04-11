@@ -1,10 +1,32 @@
 ;(function()
 {
 
+// Beacon --> dataItem
+
+var dataItems = [];
+
+function makeDataItem(title)
+{
+	dataItems.push(
+	{
+		title: title,
+		id: 'ACM-' + (Math.trunc(Math.random() * 1000000))
+	})
+}
+
+makeDataItem('1903 Engine Parts')
+makeDataItem('1903 Main Wing Parts')
+makeDataItem('1903 Tail Section Parts')
+makeDataItem('1903 Fuselage Parts')
+makeDataItem('1903 Landing Gear Parts')
+
 // Beacon monitor.
 var monitor = null;
 
 // Timer that displays list of beacons.
+var displayTimer = null;
+
+// Timer that updates beacons.
 var updateTimer = null;
 
 function main()
@@ -52,33 +74,83 @@ function onDeviceReady()
 	setTimeout(monitor.startScan, 500);
 
 	// Display refresh timer.
-	updateTimer = setInterval(displayBeaconList, 500);
+	displayTimer = setInterval(displayBeacons, 500);
+
+	// Update timer.
+	updateTimer = setInterval(updateBeacons, 2000);
 }
 
-function displayBeaconList()
+function updateBeacons()
 {
+	var beacons = monitor.getSortedBeaconList(function(beacon1, beacon2)
+	{
+		return false;
+	});
+
+	beacons.forEach(function(beacon)
+	{
+		// For demo.
+		beacon.timeStamp = Date.now();
+
+		// Associate beacon with data (this for demo purpose, in a real
+		// app use a database with beacon id mapped to data).
+		if (!beacon.data)
+		{
+			beacon.data = dataItems.pop();
+			if (!beacon.data)
+			{
+				beacon.data = makeDataItem(
+					'PART-' + (Math.trunc(Math.random() * 1000000)));
+			}
+		}
+
+		if (!beacon.distance)
+		{
+			beacon.distance = Math.trunc(Math.random() * 700 + 50);
+		}
+
+		beacon.distance += Math.trunc(Math.random() * 80 - 40);
+	});
+
+	// Remove inactive beacons.
+	monitor.removeInactiveBeacons();
+}
+
+// Display the list of beacons.
+function displayBeacons()
+{
+	// Sort beacons.
+	var beacons = monitor.getSortedBeaconList(function(beacon1, beacon2)
+	{
+		if (beacon1.distance && beacon2.distance)
+		{
+			return beacon1.distance > beacon2.distance;
+		}
+
+		return false;
+	});
+
 	// Clear beacon list.
 	$('.beacon-list').empty();
 
-	// Update beacon list.
-	var beacons = monitor.getSortedBeaconList();
-	var timeNow = Date.now();
-	$.each(beacons, function(index, beacon)
+	// Display beacon list.
+	beacons.forEach(function(beacon)
 	{
-		// Only show beacons that are updated during the last 60 seconds.
-		// TODO: Move removal to monitor object.
-		if (beacon.timeStamp + 60000 > timeNow)
-		{
-			// Create HTML to display beacon data.
-			var element = $(
-				'<li>'
-				+	beacon.name + ' ' +
-				+	beacon.rssi
-				+ '</li>'
-			);
+		if (!beacon.data) return;
 
-			$('.beacon-list').append(element);
-		}
+		var dist = (1000 - beacon.distance) / 15;
+
+		// Create HTML to display beacon data.
+		var element = $(
+			'<li>'
+			+	'<p class="title">' + beacon.data.title + '<br />'
+			+ 		beacon.data.id + '<br />'
+			+	'Distance: ' + beacon.distance + '</p>'
+			+   '<div class="evo-dist-bar" style="width:' + dist + '%;"></div>'
+			+ '</li>'
+		);
+
+		$('.beacon-list').append(element);
 	});
 }
 
@@ -105,7 +177,7 @@ function createBeaconMonitor()
 		beacons[beacon.address] = beacon;
 	}
 
-	for (var i = 0; i < 3; ++i) { monitor.createFake(); }
+	for (var i = 0; i < 5; ++i) { monitor.createFake(); }
 
 	monitor.startScan = function()
 	{
@@ -132,7 +204,7 @@ function createBeaconMonitor()
 		if (rssi < -100) return 1; // Min RSSI
 		return 100 + rssi;
 	}
-
+/*
 	monitor.getSortedBeaconList = function()
 	{
 		var beaconList = [];
@@ -151,10 +223,37 @@ function createBeaconMonitor()
 
 		return beaconList;
 	}
+*/
+	monitor.getSortedBeaconList = function(sortFun)
+	{
+		var beaconList = [];
+
+		for (var key in beacons)
+		{
+			beaconList.push(beacons[key]);
+		}
+
+		beaconList.sort(sortFun);
+
+		return beaconList;
+	}
 
 	monitor.getBeaconList = function()
 	{
 		return beacons;
+	}
+
+	monitor.removeInactiveBeacons = function()
+	{
+		var timeNow = Date.now();
+		for (var key in beacons)
+		{
+			var beacon = beacons[key];
+			if (beacon.timeStamp + 5000 < timeNow)
+			{
+				delete beacons[key];
+			}
+		}
 	}
 
 	return monitor;

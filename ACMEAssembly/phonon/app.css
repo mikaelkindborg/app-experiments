@@ -1,0 +1,67 @@
+
+html
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after
+{
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+.header-bar
+{
+	background-color: #ef3b40;
+}
+
+.list li .title,
+.list li .body
+{
+	line-height: 25px;
+}
+
+th, td
+{
+	text-align: left !important;
+	vertical-align: top !important;
+}
+
+.evo-dist-bar
+{
+	height: 6px;
+	background-color: #555555;
+	margin-bottom: 10px;
+}
+
+.evo-menu-item
+{
+	clear: both;
+	background: rgb(230,230,230);
+	right: 0px;
+	left: 0px;
+	height: 120px;
+	box-sizing: border-box;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.evo-menu-item img
+{
+	width: 150px !important;
+	height: auto !important;
+	float: left;
+	padding: 0px 10px 10px 0px;
+}
+
+.evo-menu-item p
+{
+	font-size: 24px;
+}
