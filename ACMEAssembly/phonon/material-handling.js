@@ -14,11 +14,11 @@ function makeDataItem(title)
 	})
 }
 
-makeDataItem('1903 Engine Parts')
-makeDataItem('1903 Main Wing Parts')
-makeDataItem('1903 Tail Section Parts')
-makeDataItem('1903 Fuselage Parts')
-makeDataItem('1903 Landing Gear Parts')
+makeDataItem('Engine Parts')
+makeDataItem('Main Wing Parts')
+makeDataItem('Tail Section Parts')
+makeDataItem('Fuselage Parts')
+makeDataItem('Landing Gear Parts')
 
 // Beacon monitor.
 var monitor = null;
@@ -71,13 +71,21 @@ function onDeviceReady()
 	monitor = createBeaconMonitor();
 
 	// Start tracking beacons.
-	setTimeout(monitor.startScan, 500);
+	setTimeout(
+		function()
+		{
+			monitor.startScan();
+			// Initial display.
+			updateBeacons();
+			displayBeacons();
+		},
+		100);
 
 	// Display refresh timer.
 	displayTimer = setInterval(displayBeacons, 500);
 
 	// Update timer.
-	updateTimer = setInterval(updateBeacons, 2000);
+	updateTimer = setInterval(updateBeacons, 1000);
 }
 
 function updateBeacons()
@@ -106,10 +114,10 @@ function updateBeacons()
 
 		if (!beacon.distance)
 		{
-			beacon.distance = Math.trunc(Math.random() * 700 + 50);
+			beacon.distance = Math.trunc(Math.random() * 300 + 20);
 		}
 
-		beacon.distance += Math.trunc(Math.random() * 80 - 40);
+		beacon.distance += Math.trunc(Math.random() * 10 - 5);
 	});
 
 	// Remove inactive beacons.
@@ -138,14 +146,15 @@ function displayBeacons()
 	{
 		if (!beacon.data) return;
 
-		var dist = (1000 - beacon.distance) / 15;
+		//var dist = (1000 - beacon.distance) / 15;
+		var dist = (beacon.distance) / 15;
 
 		// Create HTML to display beacon data.
 		var element = $(
 			'<li>'
-			+	'<p class="title">' + beacon.data.title + '<br />'
-			+ 		beacon.data.id + '<br />'
-			+	'Distance: ' + beacon.distance + '</p>'
+			+	'<p class="title"><b>' + beacon.data.title + '</b><br />'
+			+ 		'ID: ' + beacon.data.id + '<br />'
+			+	'Distance: ' + (beacon.distance/10) + ' m</p>'
 			+   '<div class="evo-dist-bar" style="width:' + dist + '%;"></div>'
 			+ '</li>'
 		);

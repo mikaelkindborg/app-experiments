@@ -44,7 +44,6 @@ th, td
 	right: 0px;
 	left: 0px;
 	height: 120px;
-	box-sizing: border-box;
 	margin: 5px;
 	padding: 5px;
 	cursor: pointer;
@@ -55,10 +54,26 @@ th, td
 
 .evo-menu-item img
 {
-	width: 150px !important;
-	height: auto !important;
+	width: 150px;
+	height: auto;
 	float: left;
 	padding: 0px 10px 10px 0px;
+}
+
+.evo-menu-item-acme
+{
+	background: rgb(255,255,255);
+	right: 0px;
+	left: 0px;
+	height: 80px;
+	margin: 5px;
+	padding: 5px;
+}
+
+.evo-menu-item-acme img
+{
+	width: 200px;
+	height: auto;
 }
 
 .evo-menu-item p

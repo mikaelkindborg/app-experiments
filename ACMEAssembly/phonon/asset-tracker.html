@@ -9,10 +9,30 @@
 		<meta http-equiv="pragma" content="no-cache" />
 		<meta http-equiv="expires" content="-1" />
 
+        <title>ACME Assembly</title>
+
         <link rel="stylesheet" href="lib/phonon/css/phonon.css" />
         <link rel="stylesheet" href="app.css" />
 
-        <title>ACME Assembly</title>
+        <style>
+		#map-canvas
+		{
+			position: absolute;
+			left: 10px;
+			right: 10px;
+			top: 62px;
+			bottom: 10px;
+			margin: 0;
+			padding: 0;
+		}
+
+		.marker-panel-content
+		{
+			font-size: 20px;
+			font-weight: normal;
+		}
+
+		</style>
     </head>
     <body>
 		<home data-page="true">
@@ -20,21 +40,153 @@
             <header class="header-bar">
             	<a class="btn pull-left icon icon-arrow-back" href="index.html"></a>
                 <div class="center">
-                    <h1 class="title">ACME Assembly</h1>
+                    <h1 class="title">ACME Tracking</h1>
                 </div>
             </header>
+            <!--
             <div class="content">
-
-            <div class="padded-full">
-				<h1>Asset Tracker</h1>
-
-                <p>Wright 1903 Aircraft Parts. TODO: Map</p>
+				<div class="padded-full">
+					<h1>Asset Tracking</h1>
+				</div>
             </div>
-            </div>
+            -->
         </home>
+
+		<div id="map-canvas"></div>
+
+        <!-- Small Panel (looks like an action sheet) -->
+        <div id="marker-panel" class="panel">
+            <header class="header-bar">
+                <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+                <div class="center">
+                    <h1 class="title">Tracking Details</h1>
+                </div>
+            </header>
+
+            <div class="content marker-panel-content">
+            </div>
+        </div>
 
 		<script src="lib/jquery/jquery-2.2.2.min.js"></script>
         <script src="lib/phonon/js/phonon.js"></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<!--
+			NOTE: If you use this service a lot, you need to get an
+			API key for Google Maps. Then use this script URL instead:
+			src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_GOOGLE_MAPS_API_KEY_HERE"
+			Learn how to obtain your API key here:
+			https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+		-->
+
+        <script>
+		;(function()
+		{
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+		// Map init position.
+		var MAP_INIT_LATITUDE = 59.62;
+		var MAP_INIT_LONGITUDE = 16.55;
+
+		var theMap;
+		var mapMarker1;
+		var mapMarker2;
+		var mapMarker3;
+
+		function initialize()
+		{
+			var mapOptions =
+			{
+				center: { lat: MAP_INIT_LATITUDE, lng: MAP_INIT_LONGITUDE },
+				zoom: 7,
+				draggable: true,
+				panControl: false,
+				mapTypeControl: false,
+				streetViewControl: false,
+				zoomControl: true,
+			};
+
+			theMap = new google.maps.Map(
+				document.getElementById('map-canvas'),
+				mapOptions);
+
+			google.maps.event.trigger(theMap, 'resize');
+
+			// Remove current marker if available.
+			/*if (mapMarker)
+			{
+				mapMarker.setMap(null);
+			}*/
+
+			// Create markers.
+			mapMarker1 = new google.maps.Marker({
+				position:
+					new google.maps.LatLng(
+						MAP_INIT_LATITUDE,
+						MAP_INIT_LONGITUDE),
+				title: 'Aircraft Parts'
+			});
+			mapMarker1.setMap(theMap);
+
+			google.maps.event.addListener(mapMarker1, 'click', function() {
+				showPanel('Aircraft Parts', 'ACM-986446');
+			});
+
+			/*
+			// Unused info window code.
+			var infoWindow1 = new google.maps.InfoWindow({
+				content: 'Aircraft Parts - ACM-986446'
+			});
+			google.maps.event.addListener(mapMarker1, 'click', function () {
+				infoWindow1.open(theMap, mapMarker1);
+			});
+			*/
+
+			mapMarker2 = new google.maps.Marker({
+				position:
+					new google.maps.LatLng(
+						MAP_INIT_LATITUDE - 0.24,
+						MAP_INIT_LONGITUDE - 0.9),
+				title: 'Truck Parts'
+			});
+			mapMarker2.setMap(theMap);
+			google.maps.event.addListener(mapMarker2, 'click', function() {
+				showPanel('Truck Parts', 'ACM-876446');
+			});
+
+			mapMarker3 = new google.maps.Marker({
+				position:
+					new google.maps.LatLng(
+						MAP_INIT_LATITUDE - 0.84,
+						MAP_INIT_LONGITUDE + 0.5),
+				title: 'Car Parts'
+			});
+			mapMarker3.setMap(theMap);
+			google.maps.event.addListener(mapMarker3, 'click', function() {
+				showPanel('Car Parts', 'ACM-654438');
+			});
+
+			// Center map around marker.
+			theMap.panTo(mapMarker1.getPosition());
+		}
+
+		function showPanel(title, shippingID)
+		{
+			setTimeout(
+				function()
+				{
+					var html = '<div class="padded-full">'
+						+ '<h3>' + title + '</h3>'
+						+ '<p>Shipping ID: ' + shippingID + '<p>'
+					$('.marker-panel-content').html(html);
+					phonon.panel('#marker-panel').open();
+				},
+				10);
+		}
+
+		})();
+        </script>
 
     </body>
 </html>
