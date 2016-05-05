@@ -14,17 +14,24 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 
   <style>
-  .page-content
+  .evo-page-content
   {
-    margin: 10px 20px;
+    margin: 10px 10px;
   }
-  
   .evo-event-item
   {
     width: 300px;
     padding: 5px;
   }
-  
+  .evo-place-info
+  {
+  }
+  .evo-place-info-heading
+  {
+    font-size: 36px;
+    padding: 30px 20px;
+    color: #ffffff;
+  }
   .evo-time-15m
   {
     height: 20px;
@@ -118,9 +125,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <!-- tab-1 -->
     <section class="mdl-layout__tab-panel is-active" id="tab-1">
       <div class="page-content">
-      
-      
-      <ul class="demo-list-control mdl-list">
+        <ul class="demo-list-control mdl-list">
           <li class="mdl-list__item">
             <span class="mdl-list__item-primary-content">
               Tid nu
@@ -129,7 +134,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
               08:08
             </span>
           </li>
-          <li class="mdl-list__item" style="background:#ffcccc;">
+          <li class="mdl-list__item evo-color-4">
             <span class="mdl-list__item-primary-content">
               <i class="material-icons mdl-list__item-avatar">local_cafe</i>
               Äta frukost
@@ -157,116 +162,135 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
             </span>
           </li>
         </ul>
-
       </div>
     </section>
     
-    
-  <style>
-  </style>
     <!-- tab-2 -->
     <section class="mdl-layout__tab-panel" id="tab-2">
       <div class="page-content">
         <!--<h1>Dagens händelser</h1>-->
         <div class="evo-event-diagram" style="width:350px;">
-        <div style="float:right;margin-top:20px;height:3px;width:30px;background:#ffaa00;">
-        </div>
-        <div style="width:300px;">
-          <div class="evo-event-item evo-color-5 evo-time-15m">07:30 Vakna <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-2 evo-time-15m">07:45 Påklädning <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-3 evo-time-30m">08:00: Äta frukost <span class="evo-event-item-duration">30 min</span></div>
-          <div class="evo-event-item evo-color-4 evo-time-15m">08:30 Borsta tänderna <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-5 evo-time-15m">08:45 Gå till skolan <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-2 evo-time-5h">09:00 Skola <span class="evo-event-item-duration">5 h</span></div>
-          <div class="evo-event-item evo-color-3 evo-time-30m">14:00 Gå hem <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-4 evo-time-30m">14:30 Mellanmål <span class="evo-event-item-duration">30 min</span></div>
-          <div class="evo-event-item evo-color-5 evo-time-2h">15:00 Träning <span class="evo-event-item-duration">2 h</span></div>
-          <div class="evo-event-item evo-color-2 evo-time-1h">17:00 Middag <span class="evo-event-item-duration">1 h</span></div>
-          <div class="evo-event-item evo-color-3 evo-time-30m">18:00 Läxor <span class="evo-event-item-duration">30 min</span></div>
-          <div class="evo-event-item evo-color-4 evo-time-1h">18:30 Speltid <span class="evo-event-item-duration">1 h</span></div>
-          <div class="evo-event-item evo-color-5 evo-time-1h">19:30 Läsa och rita <span class="evo-event-item-duration">1 h</span></div>
-          <div class="evo-event-item evo-color-2 evo-time-30">20:30 Kvällsmat <span class="evo-event-item-duration">30 min/span></div>
-          <div class="evo-event-item evo-color-3 evo-time-15">21:00 Borsta tänderna <span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-4 evo-time-15">21:15 Dusch<span class="evo-event-item-duration">15 min</span></div>
-          <div class="evo-event-item evo-color-5 evo-time-15">21:30 Lugn stund<span class="evo-event-item-duration">1 h</span></div>
-          <div class="evo-event-item evo-color-6 evo-time-9h">22:30 Sova<span class="evo-event-item-duration">9 h</span></div>
-        </div>
+          <div style="float:right;margin-top:80px;height:3px;width:30px;background:#ffaa00;">
+          </div>
+          <div style="width:300px;">
+            <div class="evo-event-item evo-color-5 evo-time-15m">07:30 Vakna <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-2 evo-time-15m">07:45 Påklädning <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-3 evo-time-30m">08:00: Äta frukost <span class="evo-event-item-duration">30 min</span></div>
+            <div class="evo-event-item evo-color-4 evo-time-15m">08:30 Borsta tänderna <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-5 evo-time-15m">08:45 Gå till skolan <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-2 evo-time-5h">09:00 Skola <span class="evo-event-item-duration">5 h</span></div>
+            <div class="evo-event-item evo-color-3 evo-time-30m">14:00 Gå hem <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-4 evo-time-30m">14:30 Mellanmål <span class="evo-event-item-duration">30 min</span></div>
+            <div class="evo-event-item evo-color-5 evo-time-2h">15:00 Träning <span class="evo-event-item-duration">2 h</span></div>
+            <div class="evo-event-item evo-color-2 evo-time-1h">17:00 Middag <span class="evo-event-item-duration">1 h</span></div>
+            <div class="evo-event-item evo-color-3 evo-time-30m">18:00 Läxor <span class="evo-event-item-duration">30 min</span></div>
+            <div class="evo-event-item evo-color-4 evo-time-1h">18:30 Speltid <span class="evo-event-item-duration">1 h</span></div>
+            <div class="evo-event-item evo-color-5 evo-time-1h">19:30 Läsa och rita <span class="evo-event-item-duration">1 h</span></div>
+            <div class="evo-event-item evo-color-2 evo-time-30">20:30 Kvällsmat <span class="evo-event-item-duration">30 min/span></div>
+            <div class="evo-event-item evo-color-3 evo-time-15">21:00 Borsta tänderna <span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-4 evo-time-15">21:15 Dusch<span class="evo-event-item-duration">15 min</span></div>
+            <div class="evo-event-item evo-color-5 evo-time-15">21:30 Lugn stund<span class="evo-event-item-duration">1 h</span></div>
+            <div class="evo-event-item evo-color-6 evo-time-9h">22:30 Sova<span class="evo-event-item-duration">9 h</span></div>
+          </div>
         </div>
       </div>
     </section>
     
-    <!-- tab-2 -->
+    <!-- tab-3 -->
     <section class="mdl-layout__tab-panel" id="tab-3">
-      <div class="page-content evo-place-info evo-place-info-1">
-        <h1>Köket</h1><div class="mdl-card">
-  <div class="mdl-card__title">
-     <h2 class="mdl-card__title-text">Auckland Sky Tower<br>Auckland, New Zealand</h2>
-  </div>
-  <div class="mdl-card__media">
-    <img src="skytower.jpg" width="173" height="157" border="0" alt=""
-     style="padding:10px;">
-  </div>
-  <div class="mdl-card__supporting-text">
-  The Sky Tower is an observation and telecommunications tower located in Auckland,
-  New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure
-  in the Southern Hemisphere.
-  </div>
-  <div class="mdl-card__actions">
-     <a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29">Wikipedia entry</a>
-  </div>
-</div>
-
-        Laga middag
-        Förbereda frukost
-        Recept
-        Rutiner
+    
+      <div class="page-content evo-place-info evo-place-info-0">
+        <div class="evo-place-info-heading evo-color-5">Letar...</div>
+        <div class="evo-page-content">
+          <p>
+            Gå till en plats där det finns en beacon.
+          </p>
+        </ul>
       </div>
-      <div class="page-content evo-place-info evo-place-info-2">
-        <h1>Vardagsrummet</h1><div class="mdl-card mdl-shadow--4dp">
-  <div class="mdl-card__media"><img src="skytower.jpg" width="173" height="157" border="0"
-   alt="" style="padding:10px;">
-  </div>
-  <div class="mdl-card__supporting-text">
-    Auckland Sky Tower, taken March 24th, 2014
-  </div>
-  <div class="mdl-card__supporting-text">
-  The Sky Tower is an observation and telecommunications tower located in Auckland,
-  New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure
-  in the Southern Hemisphere.
-  </div>
-</div>
-
-        Läxor
-      </div>
-      <div class="page-content evo-place-info evo-place-info-3">
-        <h1>Sovrummet</h1>
-      
-
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Mauris sagittis pellentesque lacus eleifend lacinia...
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Get Started
-    </a>
-  </div>
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div>
-</div>
-
-
-        Vädra
         
+      <div class="page-content evo-place-info evo-place-info-1">
+        <div class="evo-place-info-heading evo-color-5">Köket</div>
+        <ul class="demo-list-control mdl-list">
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Göra mellanmål
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Laga middag
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Förbereda frukost
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Diska
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Recept
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Inköpslista
+            </span>
+          </li>
+        </ul>
       </div>
       
+      <div class="page-content evo-place-info evo-place-info-2">
+        <div class="evo-place-info-heading evo-color-5">Vardagsrummet</div>
+        <ul class="demo-list-control mdl-list">
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Göra läxor
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Rita
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Spela
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Modellbygge
+            </span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="page-content evo-place-info evo-place-info-3">
+        <div class="evo-place-info-heading evo-color-5">Sovrummet</div>
+        <ul class="demo-list-control mdl-list">
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Bädda
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Vädra
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Meditera
+            </span>
+          </li>
+        </ul>
+      </div>
+
     </section>
     
   </main>
@@ -292,7 +316,7 @@ onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised 
 
 <script>
 //$('.mdl-layout__tab:eq(1) span').click()
-function selectTab2() { $('#a-tab-2').get(0).click() }
+function selectTab2() { $('#a-tab-3').get(0).click() }
 setTimeout(selectTab2, 1)
 //console.dir($('a[href="#tab-2"]'))
 //console.dir($('a[href="#tab-2"]'))
