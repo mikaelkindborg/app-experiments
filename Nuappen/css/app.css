@@ -1,0 +1,129 @@
+.evo-page-content
+{
+  margin: 10px 10px;
+}
+
+.evo-event-item
+{
+  width: 300px;
+  padding: 5px;
+}
+
+.evo-place-info
+{
+}
+
+.evo-place-info-heading
+{
+  font-size: 36px;
+  padding: 25px 20px;
+  color: #ffffff;
+}
+
+.evo-color-1
+{
+  background: #cddc40;
+}
+.evo-color-2
+{
+  background: #8bc34a;
+}
+.evo-color-3
+{
+  background: #009688;
+}
+.evo-color-4
+{
+  background: #00bcd4;
+}
+.evo-color-5
+{
+  background: #039af4;
+}
+.evo-color-6
+{
+  background: #3f51b5;
+}
+
+.evo-event-item-duration
+{
+  float: right;
+}
+
+.mdl-list__item
+{
+  position: relative;
+  height: 80px;
+}
+
+.mdl-list__item-primary-content
+{
+  margin-left: 40px;
+  margin-right: 90px;
+  font-size: 18px;
+}
+
+.evo-list-icon-1
+{
+  position: absolute;
+  width: 40px;
+  height: auto;
+  left: 10px;
+  top: 20px;
+}
+
+.evo-list-icon-2
+{
+  position: absolute;
+  width: 50px;
+  height: auto;
+  top: 15px;
+  right: 40px;
+}
+
+.evo-list-icon-3
+{
+  position: absolute;
+  width: 30px;
+  height: auto;
+  top: 25px;
+  right: 5px;
+}
+
+.evo-header-status
+{
+  background-color: #ffffff;
+  padding: 15px 15px 0px 15px;
+}
+
+.evo-header-name
+{
+  color: #000000;
+  font-size: 22px;
+}
+
+.evo-header-date
+{
+  color: #555555;
+  font-size: 16px;
+}
+
+.mdl-layout__header
+{
+  background-color: #6563a4;
+}
+
+.mdl-layout__tab-bar
+{
+  background-color: #ffffff;
+}
+
+.mdl-layout__tab
+{
+  color: #000000;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active
+{
+  color: #000000;
+}
