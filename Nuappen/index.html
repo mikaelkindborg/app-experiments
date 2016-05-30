@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, user-scalable=no,
+  <meta name="viewport" content="width=device-width, user-scalable=no,
 initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-    <title>Enklare Liv</title>
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="-1" />
+  
+  <title>Nuappen</title>
       
-    <!--<link rel="stylesheet" href="lib/mdl/material.css" />-->
+  <!--<link rel="stylesheet" href="lib/mdl/material.css" />-->
       
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
@@ -18,6 +20,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
   {
     margin: 10px 10px;
   }
+  
   .evo-event-item
   {
     width: 300px;
@@ -29,7 +32,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
   .evo-place-info-heading
   {
     font-size: 36px;
-    padding: 30px 20px;
+    padding: 25px 20px;
     color: #ffffff;
   }
   .evo-time-15m
@@ -84,8 +87,70 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
   {
     float: right;
   }
+    
+  .mdl-list__item
+  {
+    position: relative;
+    height: 80px;
+  }
+
+  .mdl-list__item-primary-content
+  {
+    margin-left: 40px;
+    margin-right: 90px;
+    font-size: 18px;
+  }
+  
+  .evo-list-icon-1
+  {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    left: 10px;
+    top: 20px;
+  }
+  
+  .evo-list-icon-2
+  {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    top: 15px;
+    right: 40px;
+  }
+  
+  .evo-list-icon-3
+  {
+    position: absolute;
+    width: 30px;
+    height: auto;
+    top: 25px;
+    right: 5px;
+  }
+
+  .mdl-layout__header,
+  .mdl-layout__tab-bar
+  {
+    background-color: #6563a4;
+  }
+  .mdl-layout__tab-bar
+  {
+    background-color: #ffffff;
+  }
+  .mdl-layout__tab
+  {
+    color: #000000;
+  }
+  .mdl-layout__tab:active
+  {
+    color: #000000;
+  }
   </style>
     
+  <script>
+  // Redirect console if running from Evothings Workbench.
+  if (window.hyper) { console.log = hyper.log }
+  </script>
 </head>
 
 <body>
@@ -98,26 +163,45 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <div class="mdl-layout-icon"></div>
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Enklare Liv</span>
+      <span class="mdl-layout-title">NU-appen</span>
     </div>
-    
+    <div class="">
+    foo
+    </div>
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-      <a id="a-tab-1" href="#tab-1" class="mdl-layout__tab is-active">Just nu</a>
-      <a id="a-tab-2" href="#tab-2" class="mdl-layout__tab">Händelser</a>
-      <a id="a-tab-3" href="#tab-3" class="mdl-layout__tab">Platsinfo</a>
+      <a id="a-tab-1" href="#tab-1" class="mdl-layout__tab is-active">Nu</a>
+      <a id="a-tab-2" href="#tab-2" class="mdl-layout__tab">Översikt</a>
+      <a id="a-tab-3" href="#tab-3" class="mdl-layout__tab">Planera</a>
     </div>
   </header>
   
   <!-- Drawer -->
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout__title">Enklare Liv</span>
+    <span class="mdl-layout__title">Meny</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="#tab-1">Just nu</a>
-      <a class="mdl-navigation__link" href="#tab-2">Dagens händelser</a>
-      <a class="mdl-navigation__link" href="#tab-3">Platsinfo</a>
+      <a id="show-about-dialog" class="mdl-navigation__link" href="javascript:void(0);">Om appen</a>
+      <a id="show-settings-dialog" class="mdl-navigation__link" href="javascript:void(0);">Inställningar</a>
     </nav>
   </div>
+  
+  <!-- About Dialog -->
+  <!-- Not Working
+  <dialog id="about-dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Om Nuappen</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Skiss för app för att hålla reda på händelser under dagen och i livet.
+      </p>
+      <p>
+        2016 Evothings AB
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">OK</button>
+    </div>
+  </dialog>
+  -->
   
   <!-- Main -->
   <main class="mdl-layout__content">
@@ -134,13 +218,12 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
               08:08
             </span>
           </li>
-          <li class="mdl-list__item evo-color-4">
+          <li class="mdl-list__item">
+            <img class="evo-list-icon-1" src="icons/icon-eat.png" />
+            <img class="evo-list-icon-2" src="icons/icon-paus.png" />
+            <img class="evo-list-icon-3" src="icons/icon-arrow-down.png" />
             <span class="mdl-list__item-primary-content">
-              <i class="material-icons mdl-list__item-avatar">local_cafe</i>
-              Äta frukost
-            </span>
-            <span class="mdl-list__item-secondary-action">
-              08:00
+              Frukost
             </span>
           </li>
           <li class="mdl-list__item">
@@ -200,97 +283,20 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <section class="mdl-layout__tab-panel" id="tab-3">
     
       <div class="page-content evo-place-info evo-place-info-0">
-        <div class="evo-place-info-heading evo-color-5">Letar...</div>
+        <div class="evo-place-info-heading evo-color-5">Kalender</div>
         <div class="evo-page-content">
           <p>
-            Gå till en plats där det finns en beacon.
+            Här ska det finnas en kalender som användaren kan redigera. Funktioner:
           </p>
-        </ul>
+          <ul>
+            <li>Lägga upp schema och återkommande händelser med olika tidsintervall.</li>
+            <li>Stöd för intervallen vecka, varannan vecka, var n:te vecka, varje månad, varannan månad.</li>
+            <li>Stöd för att lägga in händelser på specifika datum. Kan vara återkommande varje år.</li>
+            <li>Färdiga mallar/guider för att förenkla att komma igång.</li>
+          </ul>
+        </div>
       </div>
         
-      <div class="page-content evo-place-info evo-place-info-1">
-        <div class="evo-place-info-heading evo-color-5">Köket</div>
-        <ul class="demo-list-control mdl-list">
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Göra mellanmål
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Laga middag
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Förbereda frukost
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Diska
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Recept
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Inköpslista
-            </span>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="page-content evo-place-info evo-place-info-2">
-        <div class="evo-place-info-heading evo-color-5">Vardagsrummet</div>
-        <ul class="demo-list-control mdl-list">
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Göra läxor
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Rita
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Spela
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Modellbygge
-            </span>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="page-content evo-place-info evo-place-info-3">
-        <div class="evo-place-info-heading evo-color-5">Sovrummet</div>
-        <ul class="demo-list-control mdl-list">
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Bädda
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Vädra
-            </span>
-          </li>
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Meditera
-            </span>
-          </li>
-        </ul>
-      </div>
-
     </section>
     
   </main>
@@ -310,13 +316,31 @@ onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised 
 </div>
 -->
 
-<script src="lib/jquery/jquery-2.2.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <!--<script src="lib/mdl/material.js"></script>-->
 <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+<script src="cordova.js"></script>
 
 <script>
 function selectTab2() { $('#a-tab-1').get(0).click() }
 setTimeout(selectTab2, 1)
+
+/* Not working!
+
+var dialog = document.querySelector('#about-dialog');
+var showDialogButton = document.querySelector('#show-about-dialog');
+if (! dialog.showModal) {
+  dialogPolyfill.registerDialog(dialog);
+}
+showDialogButton.addEventListener('click', function() {
+  dialog.showModal();
+});
+dialog.querySelector('.close').addEventListener('click', function() {
+  dialog.close();
+});
+*/
+    
 </script>
     
 
