@@ -67,24 +67,33 @@ function buildTodayList()
   addTodayList(html)
 }
 
-function addTodayListItem(text, icon)
+function addTodayListItem(text, icon, expandedHTML)
 {
+  // TODO: Add ids to items. And click/drag events.
   var html = 
-    '<li class="mdl-list__item">' +
+    '<li class="mdl-list__item evo-today-list-item">' +
       '<img class="evo-list-icon-1" src="icons/' + icon + '" />' +
       '<img class="evo-list-icon-2" src="icons/icon-start.png" />' +
-      '<img class="evo-list-icon-3" src="icons/icon-arrow-down.png" />' +
-      '<span class="mdl-list__item-primary-content">' +
+      '<img class="evo-list-icon-expand" src="icons/icon-arrow-down.png" />' +
+      '<span class="mdl-list__item-primary-content evo-today-list-item-content">' +
         text +
       '</span>' +
+    '</li>' +
+    '<li class="evo-today-list-item-expanded">' +
+      '<img class="evo-list-icon-ongoing" src="icons/icon-ongoing.png" />' +
+      '<div class="evo-today-list-item-content-expanded">' +
+          '<h3>7.00-7.30 vardagar</h3><p>PÅGÅENDE AKTIVITET</p><p>Består av:</p>' +
+          '<ul><li>Göra iordning/ta fram frukost</li><li>Duka</li><li>Äta</li>' +
+          '<li>Duka av och ställa i diskmaskinen</li></ul>' +
+      '</div>' +
     '</li>'
   return html
 }
 
 function addTodayList(html)
 {
-  $('.evo-list-today').append(html)
-  componentHandler.upgradeElement($('.evo-list-today').get(0))
+  $('.evo-today-list').append(html)
+  componentHandler.upgradeElement($('.evo-today-list').get(0))
 }
 
 function getDateString()
