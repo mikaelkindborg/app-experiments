@@ -59,41 +59,71 @@ addEvent(
 
 function buildTodayList()
 {
-  var html = ''
-  html += addTodayListItem('Frukost', 'icon-eat.png')
-  html += addTodayListItem('Ta med gympapåsen', 'icon-reminder.png')
-  html += addTodayListItem('Ta med matlåda', 'icon-reminder.png')
-  html += addTodayListItem('Lunch', 'icon-eat.png')
-  addTodayList(html)
+  $('.evo-today-list').empty()
+  createTodayListItem('Frukost', 'icon-eat.png')
+  createTodayListItem('Ta med gympapåsen', 'icon-reminder.png')
+  createTodayListItem('Ta med matlåda', 'icon-reminder.png')
+  createTodayListItem('Lunch', 'icon-eat.png', true)
+  
+  componentHandler.upgradeElement($('.evo-today-list').get(0))
 }
 
-function addTodayListItem(text, icon, expandedHTML)
+var Counter = 1
+
+function createTodayListItem(text, icon, last, expandedHTML)
 {
-  // TODO: Add ids to items. And click/drag events.
-  var html = 
-    '<li class="mdl-list__item evo-today-list-item">' +
+  var expanded = false
+  
+  var id = 'id-' + (Counter++)
+  
+  var item = $(
+    '<li class="mdl-list__item evo-today-list-item" id="' +  id + '">' +
       '<img class="evo-list-icon-1" src="icons/' + icon + '" />' +
       '<img class="evo-list-icon-2" src="icons/icon-start.png" />' +
       '<img class="evo-list-icon-expand" src="icons/icon-arrow-down.png" />' +
       '<span class="mdl-list__item-primary-content evo-today-list-item-content">' +
         text +
       '</span>' +
-    '</li>' +
-    '<li class="evo-today-list-item-expanded">' +
+    '</li>')
+    
+  var item2 = $(
+    '<li class="evo-today-list-item-expanded" id="' +  id + '-expanded">' +
       '<img class="evo-list-icon-ongoing" src="icons/icon-ongoing.png" />' +
       '<div class="evo-today-list-item-content-expanded">' +
           '<h3>7.00-7.30 vardagar</h3><p>PÅGÅENDE AKTIVITET</p><p>Består av:</p>' +
           '<ul><li>Göra iordning/ta fram frukost</li><li>Duka</li><li>Äta</li>' +
           '<li>Duka av och ställa i diskmaskinen</li></ul>' +
       '</div>' +
-    '</li>'
-  return html
-}
-
-function addTodayList(html)
-{
-  $('.evo-today-list').append(html)
-  componentHandler.upgradeElement($('.evo-today-list').get(0))
+    '</li>')
+    
+  var toggleButton = item.find('.evo-list-icon-expand')
+  
+  function toogleDetail()
+  {
+    expanded = !expanded
+    if (expanded) 
+    {
+      item2.show();
+      toggleButton.attr('src', 'icons/icon-arrow-up.png')
+      if (last) item.css('border-bottom', '0px solid')
+    }
+    else
+    {
+      item2.hide();
+      toggleButton.attr('src', 'icons/icon-arrow-down.png')
+      if (last) item.css('border-bottom', '1px solid #cccccc')
+    }
+  }
+  
+  
+  item.css('border-top', '1px solid #cccccc')
+  if (last) item.css('border-bottom', '1px solid #cccccc')
+  if (last) item2.css('border-bottom', '1px solid #cccccc')
+  
+  item.find('.evo-list-icon-expand').on('click', toogleDetail)
+  
+  $('.evo-today-list').append(item)
+  $('.evo-today-list').append(item2)
 }
 
 function getDateString()
