@@ -1,3 +1,21 @@
+*
+{
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.evo-list-icon-1,
+.evo-list-icon-2,
+.evo-header-user-image
+{
+  pointer-events: none;
+}
+
 .evo-page-content
 {
   margin: 10px 10px;
