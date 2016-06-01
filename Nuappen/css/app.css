@@ -137,14 +137,52 @@
   top: 5px;
 }
 
+.evo-today-list-item-menu
+{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  display: none;
+}
+
+.evo-today-list-item-menu-button-klar,
+.evo-today-list-item-menu-button-tabort
+{
+  position: absolute;
+  top: 200px;
+  height: 70px;
+  width: auto;
+}
+
+.evo-today-list-item-menu-button-tabort
+{
+  right: 0px;
+}
+
+.evo-today-list-item-menu-button-klar
+{
+  right: 76px;
+}
+
 .evo-header-status
 {
   background-color: #ffffff;
   padding: 15px 15px 0px 15px;
 }
 
+.evo-header-user-image
+{
+  float: left;
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .evo-header-name
 {
+  margin-top: 20px;
   color: #000000;
   font-size: 22px;
 }
