@@ -4,13 +4,13 @@
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
+  -moz-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   -webkit-touch-callout: none;
 }
 
 .evo-list-icon-1,
-.evo-list-icon-2,
 .evo-header-user-image
 {
   pointer-events: none;
@@ -19,53 +19,6 @@
 .evo-page-content
 {
   margin: 10px 10px;
-}
-
-.evo-event-item
-{
-  width: 300px;
-  padding: 5px;
-}
-
-.evo-place-info
-{
-}
-
-.evo-place-info-heading
-{
-  font-size: 36px;
-  padding: 25px 20px;
-  color: #ffffff;
-}
-
-.evo-color-1
-{
-  background: #cddc40;
-}
-.evo-color-2
-{
-  background: #8bc34a;
-}
-.evo-color-3
-{
-  background: #009688;
-}
-.evo-color-4
-{
-  background: #00bcd4;
-}
-.evo-color-5
-{
-  background: #039af4;
-}
-.evo-color-6
-{
-  background: #3f51b5;
-}
-
-.evo-event-item-duration
-{
-  float: right;
 }
 
 .evo-today-list-item

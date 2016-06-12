@@ -2,59 +2,6 @@
 
 window.app = {}
 
-var mEvents = []
-
-// Timer for att kolla events
-
-// Lista events
- 
-app.getEvents = function()
-{
-	return mEvents
-}
-
-app.startMonitorEvents = function()
-{
-	setInterval(function() {}, 60000)
-}
-
-
-var addEvent = function(event)
-{
-	mEvents.push(event)
-}
-
-
-
-var checkEvent = function(event)
-{
-	// If event triggers, show alarm
-}
-
-// Location
-
-
-// Time
-
-
-// Event
-
-
-
-// Rule
-
-
-
-// Events
-
-addEvent(
-	{
-	name: 'Vakna', 
-	time: '9:00', 
-	place: 'Hemma'
-	})
-	
-	
 // Build NU list.
 
 function buildTodayList()
@@ -110,13 +57,32 @@ function buildTodayList()
   componentHandler.upgradeElement($('.evo-today-list').get(0))
 }
 
+// Global variables
+
 var Counter = 1
-          
+
+var SelectedTodayItem = null
+       
+var ITEMSTATE_NOTDONE = 1
+var ITEMSTATE_ONGOING = 2
+var ITEMSTATE_DONE = 3
+var ITEMSTATE_DELETED = 4
+
+var ITEMTEXTSTATE_NOTDONE = 'KOMMANDE AKTIVITET'
+var ITEMTEXTSTATE_ONGOING = 'PÅGÅENDE AKTIVITET'
+var ITEMTEXTSTATE_DONE = 'FÄRDIG AKTIVITET'
+
 function createTodayListItem(options)
 {
+	// State variables.
+	
   var expanded = false
   
+  var itemState = ITEMSTATE_NOTDONE
+  
   var id = 'id-' + (Counter++)
+  
+  // List item.
   
   var item = $(
     '<li class="mdl-list__item evo-today-list-item" id="' +  id + '">' +
@@ -128,16 +94,23 @@ function createTodayListItem(options)
       '</span>' +
     '</li>')
     
+  // Expanded list item.
+  
   var item2 = $(
     '<li class="evo-today-list-item-expanded" id="' +  id + '-expanded">' +
       '<img class="evo-list-icon-ongoing" src="icons/icon-ongoing.png" />' +
       '<div class="evo-today-list-item-content-expanded">' +
         '<h3>' + options.timeLabel +'</h3>' +
-        '<p>' + options.status +'</p>' +
+        '<p class="evo-today-list-item-text-state">' + ITEMTEXTSTATE_NOTDONE +'</p>' +
         options.expandedHTML +
       '</div>' +
     '</li>')
     
+  // Save reference to item text state.
+  var itemTextState = item2.find('.evo-today-list-item-text-state')
+  
+  // Toggle show/hide expanded item.
+  
   var toggleButton = item.find('.evo-list-icon-expand')
   
   function toogleDetail()
@@ -157,11 +130,70 @@ function createTodayListItem(options)
     }
   }
   
+  toggleButton.on('dragstart', function() { return false })
+  addTap(toggleButton.get(0), toogleDetail)
+  
+  // Toggle item state.
+  
+  var stateButton = item.find('.evo-list-icon-2')
+  
+  function toogleState()
+  {
+    if (itemState == ITEMSTATE_NOTDONE) 
+    {
+    	itemState = ITEMSTATE_ONGOING
+    	itemTextState.text(ITEMTEXTSTATE_ONGOING)
+      stateButton.attr('src', 'icons/icon-paus.png')
+    }
+    else if (itemState == ITEMSTATE_ONGOING) 
+    {
+    	itemState = ITEMSTATE_NOTDONE
+    	itemTextState.text(ITEMTEXTSTATE_NOTDONE)
+      stateButton.attr('src', 'icons/icon-start.png')
+    }
+  }
+  
+  stateButton.on('dragstart', function() { return false })
+  addTap(stateButton.get(0), toogleState)
+  
+  // Item swipe.
+  
+  addSwipe(item.get(0), showItemMenu)
+  
+	function showItemMenu()
+	{
+		// Currently selected item.
+		SelectedTodayItem = {
+			done: itemDone,
+			remove: itemRemove
+		}
+		
+		// Show menu.
+		var top = item.offset().top
+		$('.evo-today-list-item-menu-button-tabort').css('top', top + 'px')
+		$('.evo-today-list-item-menu-button-klar').css('top', top + 'px')
+		$('.evo-today-list-item-menu').show()
+	}
+	
+	function itemDone()
+	{
+		itemState = ITEMSTATE_DONE
+		itemTextState.text(ITEMTEXTSTATE_DONE)
+		stateButton.attr('src', 'icons/icon-klar-round.png')
+	}
+
+	function itemRemove()
+	{
+			itemState = ITEMSTATE_DELETED
+			item.remove()
+			item2.remove()
+	}
+
+  // Set initial item CSS.
+  
   item.css('border-bottom', '1px solid #cccccc')
   
-  item.find('.evo-list-icon-expand').on('click', toogleDetail)
-  
-  addSwipe(item.get(0), createShowItemMenuFun(item, id))
+  // Add items.
   
   $('.evo-today-list').append(item)
   $('.evo-today-list').append(item2)
@@ -174,31 +206,33 @@ function addSwipe(myElement, swipeFun)
   hammertime.on('swipeleft', swipeFun)
 }
 
-var TodayListCurrentItem = null
-
-function createShowItemMenuFun(item, id)
+function addTap(myElement, tapFun)
 {
-  return function(event)
-  {
-    TodayListCurrentItem = item
-	  var top = item.offset().top
-	  $('.evo-today-list-item-menu-button-tabort').css('top', top + 'px')
-    $('.evo-today-list-item-menu-button-klar').css('top', top + 'px')
-	  $('.evo-today-list-item-menu').show()
-  }
+  var options = {  }
+  var hammertime = new Hammer(myElement, options)
+  hammertime.on('tap', tapFun)
 }
 
 function onButtonTaBort()
 {
-  var expandedItemID = '#' + TodayListCurrentItem.attr('id') + '-expanded'
-  $(expandedItemID).remove()
-  TodayListCurrentItem.remove()
-  TodayListCurrentItem = null
+	SelectedTodayItem.remove()
+	SelectedTodayItem = null
 }
 
 function onButtonKlar()
 {
-  onButtonTaBort()
+	SelectedTodayItem.done()
+	SelectedTodayItem = null
+}
+
+function initEvents()
+{
+  $('.evo-today-list-item-menu-button-tabort').on('click', onButtonTaBort)
+  $('.evo-today-list-item-menu-button-klar').on('click', onButtonKlar)
+	$('.evo-today-list-item-menu').on('click', function()
+	{
+	  $('.evo-today-list-item-menu').hide()
+	})
 }
 
 function getDateString()
@@ -253,16 +287,6 @@ function monthString(month)
     'november',
     'december']
   return months[month]
-}
-
-function initEvents()
-{
-  $('.evo-today-list-item-menu-button-tabort').on('click', onButtonTaBort)
-  $('.evo-today-list-item-menu-button-klar').on('click', onButtonKlar)
-	$('.evo-today-list-item-menu').on('click', function()
-	{
-	  $('.evo-today-list-item-menu').hide()
-	})
 }
 
 function startDateTimer()
