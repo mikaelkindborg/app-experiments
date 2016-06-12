@@ -43,6 +43,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
       <a id="a-tab-1" href="#tab-1" class="mdl-layout__tab is-active">Nu</a>
+      <a id="a-tab-1" href="#tab-4" class="mdl-layout__tab">Här</a>
       <a id="a-tab-2" href="#tab-2" class="mdl-layout__tab">Översikt</a>
       <a id="a-tab-3" href="#tab-3" class="mdl-layout__tab">Planera</a>
     </div>
@@ -102,7 +103,40 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
       </div>
     </section>
     
+    <!-- tab-4 -->
+    <section class="mdl-layout__tab-panel" id="tab-4">
+
+    	<!-- page-start -->
+      <div id="page-start" class="page-content beacon-page">
+      	<h1>Söker beacon...</h1>
+        <div class="evo-page-content">
+          <p>
+            Gå till en plats där det finns en beacon.
+          </p>
+      </div>
+    
+    	<!-- page-1 -->
+      <div id="page-1" class="page-content beacon-page">
+      	<h1>Hall</h1>
+      	<ul class="mdl-list"></ul>
+      </div>
+
+    	<!-- page-2 -->
+      <div id="page-2" class="page-content beacon-page">
+      	<h1>Kök</h1>
+      	<ul class="mdl-list"></ul>
+      </div>
+
+    	<!-- page-3 -->
+      <div id="page-3" class="page-content beacon-page">
+      	<h1>Vardagsrum</h1>
+      	<ul class="mdl-list"></ul>
+      </div>
+
+    </section>
+    
   </main>
+  
 </div>
 
 <!--
@@ -124,6 +158,7 @@ onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised 
 <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 <script src="cordova.js"></script>
 <script src="libs/hammer/hammer.min.js"></script>
+<script src="ibeaconlib.js"></script>
 <script src="app.js"></script>
 
 <script>
@@ -147,6 +182,5 @@ dialog.querySelector('.close').addEventListener('click', function() {
     
 </script>
     
-
 </body>
 </html>

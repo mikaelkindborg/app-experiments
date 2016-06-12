@@ -2,6 +2,80 @@
 
 window.app = {}
 
+// Beacon functions.
+
+var beaconRegions =
+[
+	// Beacons sent to Usify.
+	// Dark Blue
+	{
+		id: 'page-1',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 32563,
+		minor: 53202
+	},
+	// Green
+	{
+		id: 'page-2',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 22968,
+		minor: 32267
+	},
+	// Light Blue
+	{
+		id: 'page-3',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 62024,
+		minor: 14568
+	},
+	
+	// Micke's test beacons.
+	{
+		id: 'page-1',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 23271,
+		minor: 16990
+	},
+	{
+		id: 'page-2',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 43839,
+		minor: 51056
+	},
+	{
+		id: 'page-3',
+		uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+		major: 46847,
+		minor: 33121
+	}
+]
+
+// Default page if out of range page.
+//app.infoPage = 'page-start'
+
+/*
+function gotoBeaconInfoPage(pageId)
+{
+	app.currentBeaconAccuracy = 1000
+	app.gotoBeaconPage(beaconInfoPage)
+}
+
+function gotoBeaconPage(pageId)
+{
+  //console.log('*********** show beacon ' + pageId)
+	app.currentPage = pageId
+	$('.beacon-page').hide()
+	$('#' + pageId).show()
+}
+*/
+
+function initializeBeacons()
+{
+	evothings.ibeacon.initialize()
+	evothings.ibeacon.setBeaconRegions(beaconRegions)
+	evothings.ibeacon.startScanningForBeacons()
+}
+
 // Build NU list.
 
 function buildTodayList()
@@ -118,14 +192,19 @@ function createTodayListItem(options)
     expanded = !expanded
     if (expanded) 
     {
-      item2.show();
       toggleButton.attr('src', 'icons/icon-arrow-up.png')
+      // http://www.greywyvern.com/code/php/binary2base64/
+      toggleButton.css('width', '60px')
+      item.css('background-color', 'green')
+      item2.show();
       item.css('border-bottom', '0px solid')
     }
     else
     {
-      item2.hide();
       toggleButton.attr('src', 'icons/icon-arrow-down.png')
+      toggleButton.css('width', '40px')
+      item.css('background-color', 'white')
+      item2.hide();
       item.css('border-bottom', '1px solid #cccccc')
     }
   }
@@ -192,6 +271,7 @@ function createTodayListItem(options)
   // Set initial item CSS.
   
   item.css('border-bottom', '1px solid #cccccc')
+  item2.css('border-bottom', '1px solid #cccccc')
   
   // Add items.
   
@@ -299,11 +379,18 @@ function startDateTimer()
   $('.evo-header-date').html(getDateString())
 }
 
+// TODO: Write.
+/*function initialize()
+{
+	app.gotoInfoPage()
+}*/
+
 function main()
 {
   buildTodayList()
   initEvents()
   startDateTimer()
+	initializeBeacons()
 }
 
 main()
