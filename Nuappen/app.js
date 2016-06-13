@@ -50,33 +50,62 @@ var beaconRegions =
 	}
 ]
 
-// Default page if out of range page.
-//app.infoPage = 'page-start'
+var beaconInRange = false
 
-/*
-function gotoBeaconInfoPage(pageId)
+// Default page if out of range page.
+function showBeaconInfoPage()
 {
-	app.currentBeaconAccuracy = 1000
-	app.gotoBeaconPage(beaconInfoPage)
+	showBeaconPage('page-start')
 }
 
-function gotoBeaconPage(pageId)
+function showBeaconPage(pageId)
 {
-  //console.log('*********** show beacon ' + pageId)
-	app.currentPage = pageId
 	$('.beacon-page').hide()
 	$('#' + pageId).show()
 }
-*/
 
 function initializeBeacons()
 {
+	showBeaconInfoPage()
 	evothings.ibeacon.initialize()
 	evothings.ibeacon.setBeaconRegions(beaconRegions)
+	evothings.ibeacon.setBeaconRangedAccuracy(1.5)
+	evothings.ibeacon.setBeaconOutOfRangeAccuracy(3)
+	evothings.ibeacon.setBeaconRangedFun(beaconInRangeFun)
+	evothings.ibeacon.setBeaconOutOfRangeFun(beaconOutOfRangeFun)
 	evothings.ibeacon.startScanningForBeacons()
 }
 
-// Build beacon list for rooms.
+function beaconInRangeFun(beaconId)
+{
+	showBeaconPage(beaconId)
+	
+	if (!beaconInRange)
+	{
+		showBeaconSnackbar()
+	}
+	
+	beaconInRange = true
+}
+
+function beaconOutOfRangeFun()
+{
+	showBeaconInfoPage()
+	beaconInRange = false
+}
+
+function showBeaconSnackbar() 
+{
+	// Show snackbar with link to beacon tab.
+	var snackbarContainer = $('#beacon-snackbar').get(0)
+	var data = {
+    message: 'Beacon hittad.',
+    timeout: 3000,
+    actionHandler: selectHereTab,
+    actionText: 'Visa'
+  }
+  snackbarContainer.MaterialSnackbar.showSnackbar(data)
+}
 
 function buildRoomLists()
 {
@@ -205,7 +234,6 @@ function buildTodayList()
     '<ul><li>Göra iordning/ta fram frukost</li><li>Duka</li><li>Äta</li>' +
     '<li>Duka av och ställa i diskmaskinen</li></ul>'
   options.timeLabel = '7.00-7.30 vardagar'
-  options.status = 'PÅGÅENDE AKTIVITET'
   createTodayListItem(options)
   
   options.label = 'Ta med matlåda'
@@ -215,7 +243,6 @@ function buildTodayList()
     '<ul><li>Plocka fram matlådan</li><li>Ta platspåse runt</li>' +
     '<li>Lägg i väskan</li></ul>'
   options.timeLabel = '8.00 vardagar'
-  options.status = 'KOMMANDE AKTIVITET'
   createTodayListItem(options)
   
   options.label = 'Ta med gympapåsen'
@@ -225,7 +252,6 @@ function buildTodayList()
     '<ul><li>Packa skor, byxor, tröja, handduk</li>' +
     '<li>Lägg i väskan</li></ul>'
   options.timeLabel = '8.00 onsdag och fredag'
-  options.status = 'KOMMANDE AKTIVITET'
   createTodayListItem(options)
   
   options.label = 'Lunch'
@@ -237,7 +263,18 @@ function buildTodayList()
     '<li>Äta och dricka</li>' +
     '<li>Diska matlåta</li></ul>'
   options.timeLabel = '12.00-12.30 vardagar'
-  options.status = 'KOMMANDE AKTIVITET'
+  createTodayListItem(options)
+  
+  options.label = 'Tvätta'
+  options.icon = 'icon-reminder.png'
+  options.expandedHTML = 
+    '<p>Består av:</p>' +
+    '<ul><li>Sortera tvätten</li>' +
+    '<li>Ställ in rätt temperatur</li>' +
+    '<li>Använd lagom mycket tvättmedel</li>' +
+    '<li>Starta maskinen</li>' +
+    '<li>Häng/torka tvätten</li></ul>'
+  options.timeLabel = '18.00-20.00 lördagar'
   createTodayListItem(options)
   
   //$('.evo-today-list').children().get(0).css('border-top', '1px solid #cccccc')
@@ -306,18 +343,14 @@ function createTodayListItem(options)
     expanded = !expanded
     if (expanded) 
     {
-      toggleButton.attr('src', 'icons/icon-arrow-up.png')
       // http://www.greywyvern.com/code/php/binary2base64/
-      toggleButton.css('width', '60px')
-      item.css('background-color', 'green')
+      toggleButton.attr('src', 'icons/icon-arrow-up.png')
       item2.show();
       item.css('border-bottom', '0px solid')
     }
     else
     {
       toggleButton.attr('src', 'icons/icon-arrow-down.png')
-      toggleButton.css('width', '40px')
-      item.css('background-color', 'white')
       item2.hide();
       item.css('border-bottom', '1px solid #cccccc')
     }
@@ -543,23 +576,41 @@ function startDateTimer()
   $('.evo-header-date').html(getDateString())
 }
 
-// TODO: Write.
-/*function initialize()
+function selectNowTab()
 {
-	app.gotoInfoPage()
-}*/
+	$('#a-tab-1').get(0).click() 
+}
+
+function selectHereTab()
+{
+	$('#a-tab-4').get(0).click()
+}
 
 function main()
 {
+	setTimeout(selectNowTab, 1)
   buildTodayList()
   buildRoomLists()
   initEvents()
   startDateTimer()
-	//initializeBeacons()
+  setTimeout(initializeBeacons, 5000)
 }
-
-
 
 main()
 
 })();
+
+/* Not working!
+
+var dialog = document.querySelector('#about-dialog');
+var showDialogButton = document.querySelector('#show-about-dialog');
+if (! dialog.showModal) {
+  dialogPolyfill.registerDialog(dialog);
+}
+showDialogButton.addEventListener('click', function() {
+  dialog.showModal();
+});
+dialog.querySelector('.close').addEventListener('click', function() {
+  dialog.close();
+});
+*/

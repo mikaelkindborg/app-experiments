@@ -43,7 +43,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
       <a id="a-tab-1" href="#tab-1" class="mdl-layout__tab is-active">Nu</a>
-      <a id="a-tab-1" href="#tab-4" class="mdl-layout__tab">Här</a>
+      <a id="a-tab-4" href="#tab-4" class="mdl-layout__tab">Här</a>
       <a id="a-tab-2" href="#tab-2" class="mdl-layout__tab">Översikt</a>
       <a id="a-tab-3" href="#tab-3" class="mdl-layout__tab">Planera</a>
     </div>
@@ -113,6 +113,7 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
           <p>
             Gå till en plats där det finns en beacon.
           </p>
+      	</div>
       </div>
     
     	<!-- page-1 -->
@@ -137,21 +138,12 @@ initial-scale=1, maximum-scale=1, minimum-scale=1" />
     
   </main>
   
-</div>
+  <div id="beacon-snackbar" class="mdl-js-snackbar mdl-snackbar">
+  	<div class="mdl-snackbar__text"></div>
+  	<button class="mdl-snackbar__action" type="button"></button>
+	</div>
 
-<!--
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-    <h1>Hello World</h1>
-    <p>hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd hksa hkasd </p>
-<button id="laddaom" value="yes" 
-onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Reset</button></div>
 </div>
-    <h1>Hello World</h1>
-<button id="laddaom" value="yes" 
-onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Reset</button>
-</div>
--->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <!--<script src="libs/mdl/material.js"></script>-->
@@ -160,27 +152,6 @@ onClick="location.reload();" class="mdl-button mdl-js-button mdl-button--raised 
 <script src="libs/hammer/hammer.min.js"></script>
 <script src="ibeaconlib.js"></script>
 <script src="app.js"></script>
-
-<script>
-function selectTab2() { $('#a-tab-1').get(0).click() }
-setTimeout(selectTab2, 1)
-
-/* Not working!
-
-var dialog = document.querySelector('#about-dialog');
-var showDialogButton = document.querySelector('#show-about-dialog');
-if (! dialog.showModal) {
-  dialogPolyfill.registerDialog(dialog);
-}
-showDialogButton.addEventListener('click', function() {
-  dialog.showModal();
-});
-dialog.querySelector('.close').addEventListener('click', function() {
-  dialog.close();
-});
-*/
-    
-</script>
     
 </body>
 </html>

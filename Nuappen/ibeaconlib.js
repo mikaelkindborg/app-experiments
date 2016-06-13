@@ -3,7 +3,7 @@
 // Beacon code.
 
 // Module object.
-var evothings = window.evothings || {}
+window.evothings = window.evothings || {}
 evothings.ibeacon = {}
 
 // iBeacon location manager object.
@@ -163,6 +163,7 @@ function didRangeBeaconsInRegion(result)
 	var beaconId = result.region.identifier
 
 	//console.log('@@@ ranged beacon: ' + beaconId + ' ' + JSON.stringify(beacon))
+	//console.log('@@@ ranged beacon: ' + beaconId + ' ' + beacon.accuracy)
 	
 	// Update accuracy for current beacon.
 	if (beaconId == currentBeaconId)
