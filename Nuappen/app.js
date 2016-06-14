@@ -69,7 +69,7 @@ function initializeBeacons()
 	showBeaconInfoPage()
 	evothings.ibeacon.initialize()
 	evothings.ibeacon.setBeaconRegions(beaconRegions)
-	evothings.ibeacon.setBeaconRangedAccuracy(1.5)
+	evothings.ibeacon.setBeaconRangedAccuracy(2)
 	evothings.ibeacon.setBeaconOutOfRangeAccuracy(3)
 	evothings.ibeacon.setBeaconRangedFun(beaconInRangeFun)
 	evothings.ibeacon.setBeaconOutOfRangeFun(beaconOutOfRangeFun)
@@ -312,7 +312,7 @@ function createTodayListItem(options)
   var item = $(
     '<li class="mdl-list__item evo-today-list-item" id="' +  id + '">' +
       '<img class="evo-list-icon-1" src="icons/' + options.icon + '" />' +
-      '<img class="evo-list-icon-2" src="icons/icon-start.png" />' +
+      '<div class="evo-list-icon-state"></div>' +
       '<img class="evo-list-icon-expand" src="icons/icon-arrow-down.png" />' +
       '<span class="mdl-list__item-primary-content evo-today-list-item-content">' +
         options.label +
@@ -361,7 +361,7 @@ function createTodayListItem(options)
   
   // Toggle item state.
   
-  var stateButton = item.find('.evo-list-icon-2')
+  var stateButton = item.find('.evo-list-icon-state')
   
   function toogleState()
   {
@@ -369,13 +369,13 @@ function createTodayListItem(options)
     {
     	itemState = ITEMSTATE_ONGOING
     	itemTextState.text(ITEMTEXTSTATE_ONGOING)
-      stateButton.attr('src', 'icons/icon-paus.png')
+      stateButton.css('background-position', '-50px')
     }
     else if (itemState == ITEMSTATE_ONGOING) 
     {
     	itemState = ITEMSTATE_NOTDONE
     	itemTextState.text(ITEMTEXTSTATE_NOTDONE)
-      stateButton.attr('src', 'icons/icon-start.png')
+      stateButton.css('background-position', '0px')
     }
   }
   
@@ -405,7 +405,7 @@ function createTodayListItem(options)
 	{
 		itemState = ITEMSTATE_DONE
 		itemTextState.text(ITEMTEXTSTATE_DONE)
-		stateButton.attr('src', 'icons/icon-klar-round.png')
+    stateButton.css('background-position', '-100px')
 	}
 
 	function itemRemove()
